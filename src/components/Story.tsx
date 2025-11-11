@@ -11,7 +11,7 @@ const Story = () => {
           </h2>
           <div className="space-y-4 text-lg text-muted-foreground">
             <p>
-              For over three generations, Lumière Jewels has been synonymous with exceptional craftsmanship and timeless design. Each piece in our collection is meticulously handcrafted by master artisans who pour their heart and soul into creating jewellery that transcends trends.
+              For over three generations, Mehta Gold has been synonymous with exceptional craftsmanship and timeless design. Each piece in our collection is meticulously handcrafted by master artisans who pour their heart and soul into creating jewellery that transcends trends.
             </p>
             <p>
               We believe that true luxury lies not just in precious metals and stones, but in the stories they tell and the moments they commemorate. From engagement rings that mark the beginning of forever to heirloom pieces passed down through generations, our jewellery becomes part of your legacy.

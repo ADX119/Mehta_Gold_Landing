@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-playfair text-2xl font-bold text-gradient-gold mb-4">Lumière</h3>
+            <h3 className="font-playfair text-2xl font-bold text-gradient-gold mb-4">Mehta Gold</h3>
             <p className="text-muted-foreground text-sm">
               Crafting timeless elegance since 1950. Your trusted destination for luxury jewellery.
             </p>
@@ -37,15 +37,15 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 1234567890</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>hello@lumierejewels.com</span>
+                <span>hello@MehtaGold24k.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>123 Luxury Ave, NY</span>
+                <span>Kalewadi, Opposite to Dmart</span>
               </li>
             </ul>
           </div>
@@ -53,7 +53,7 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 Lumière Jewels. All rights reserved.
+            © 2025 Mehta Gold. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />

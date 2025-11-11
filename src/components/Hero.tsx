@@ -14,9 +14,9 @@ const Hero = () => {
       
       <div className="relative z-10 container mx-auto px-4 py-20 text-center animate-fade-in">
         <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
-          <span className="text-gradient-gold shimmer">Lumière</span>
+          <span className="text-gradient-gold shimmer">Mehta</span>
           <br />
-          <span className="text-foreground">Jewels</span>
+          <span className="text-foreground">Gold</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           Discover timeless elegance with our exquisite collection of handcrafted gold, silver, and diamond jewellery
