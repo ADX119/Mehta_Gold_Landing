@@ -16,13 +16,38 @@ const FloatingJewellery = () => {
     <div ref={ref} className="fixed top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden">
       <motion.div
         style={{ y, rotate, scale }}
-        className="absolute top-1/4 right-[10%] w-24 h-24 md:w-32 md:h-32"
+        className="absolute top-1/4 right-[10%] w-32 h-32 md:w-40 md:h-40"
       >
         <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-br from-gold via-gold-light to-diamond rounded-full blur-xl opacity-60 animate-pulse"></div>
-          <div className="absolute inset-2 bg-gradient-to-br from-gold to-gold-light rounded-full shadow-elegant"></div>
-          <div className="absolute inset-4 bg-gradient-to-br from-gold-light to-gold rounded-full"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-diamond rounded-full animate-shimmer"></div>
+          {/* Outer glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-diamond via-blue-200 to-purple-200 blur-2xl opacity-50 animate-pulse"></div>
+          
+          {/* Diamond shape using clip-path */}
+          <div className="absolute inset-8 bg-gradient-to-br from-white via-diamond to-blue-100 shadow-2xl" 
+               style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}>
+            {/* Top facets */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/90 to-transparent" 
+                 style={{ clipPath: 'polygon(50% 0%, 75% 30%, 50% 45%, 25% 30%)' }}></div>
+            <div className="absolute inset-0 bg-gradient-to-bl from-blue-100/60 to-transparent" 
+                 style={{ clipPath: 'polygon(75% 30%, 100% 38%, 50% 45%)' }}></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 to-transparent" 
+                 style={{ clipPath: 'polygon(0% 38%, 25% 30%, 50% 45%)' }}></div>
+            
+            {/* Bottom facets */}
+            <div className="absolute inset-0 bg-gradient-to-t from-diamond/80 to-transparent" 
+                 style={{ clipPath: 'polygon(50% 45%, 82% 100%, 18% 100%)' }}></div>
+            
+            {/* Sparkle highlights */}
+            <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full blur-sm animate-pulse"></div>
+            <div className="absolute top-[35%] left-[60%] w-1.5 h-1.5 bg-blue-200 rounded-full blur-sm animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+            <div className="absolute top-[40%] left-[35%] w-1 h-1 bg-purple-200 rounded-full blur-sm animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+          </div>
+          
+          {/* Prismatic light rays */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/2 w-1 h-20 bg-gradient-to-b from-blue-300/40 to-transparent blur-sm rotate-12 animate-shimmer"></div>
+            <div className="absolute top-1/4 left-1/2 w-1 h-16 bg-gradient-to-b from-purple-300/30 to-transparent blur-sm -rotate-12 animate-shimmer" style={{ animationDelay: '1s' }}></div>
+          </div>
         </div>
       </motion.div>
     </div>
