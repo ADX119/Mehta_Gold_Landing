@@ -1,47 +1,58 @@
-import goldImage from "@/assets/gold-collection.jpg";
-import silverImage from "@/assets/silver-collection.jpg";
-import diamondImage from "@/assets/diamond-collection.jpg";
+import goldCollection from "@/assets/gold-collection.jpg";
+import silverCollection from "@/assets/silver-collection.jpg";
+import diamondCollection from "@/assets/diamond-collection.jpg";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const collections = [
   {
     title: "Gold",
     description: "Timeless elegance in every piece",
-    image: goldImage,
+    image: goldCollection,
     color: "gold"
   },
   {
     title: "Silver",
     description: "Modern sophistication refined",
-    image: silverImage,
+    image: silverCollection,
     color: "silver"
   },
   {
     title: "Diamond",
     description: "Brilliance that captivates",
-    image: diamondImage,
+    image: diamondCollection,
     color: "diamond"
   }
 ];
 
 const Collections = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
-            Our <span className="text-gradient-gold">Collections</span>
-          </h2>
+    <section ref={ref} className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-4">Our Collections</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Each piece is crafted with precision and passion, designed to celebrate life's most precious moments
+            Explore our curated collections of fine jewellery, each piece telling its own story
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {collections.map((collection, index) => (
-            <div
-              key={collection.title}
-              className="group relative overflow-hidden rounded-lg cursor-pointer animate-fade-in-scale"
-              style={{ animationDelay: `${index * 0.2}s` }}
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="group relative overflow-hidden rounded-lg cursor-pointer"
             >
               <div className="aspect-square overflow-hidden">
                 <img
@@ -59,7 +70,7 @@ const Collections = () => {
                   {collection.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
