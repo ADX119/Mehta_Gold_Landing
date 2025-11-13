@@ -50,7 +50,7 @@ const FloatingJewellery = () => {
   const y = useTransform(scrollYProgress, [0, 0.3, 1], ["-10%", "50%", "150%"]);
   const rotateZ = useTransform(scrollYProgress, [0, 1], [0, 720]);
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [0.6, 1.2, 0.9, 0.6]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0.2, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 1, 1, 0]);
   const x = useTransform(scrollYProgress, [0, 0.5, 1], ["80%", "20%", "80%"]);
 
   return (
