@@ -1,38 +1,70 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import floatingRing from "@/assets/floating-ring.png";
+import { useScroll, useTransform, motion } from "framer-motion";
+import { Canvas } from "@react-three/fiber";
+import { useRef } from "react";
+import * as THREE from "three";
+
+const Ring3D = () => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  return (
+    <group>
+      {/* Ring band */}
+      <mesh ref={meshRef} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1, 0.15, 16, 50]} />
+        <meshStandardMaterial
+          color="#FFD700"
+          metalness={0.9}
+          roughness={0.1}
+          emissive="#FFD700"
+          emissiveIntensity={0.2}
+        />
+      </mesh>
+      
+      {/* Diamond stone */}
+      <mesh position={[0, 0.5, 0]}>
+        <octahedronGeometry args={[0.4, 0]} />
+        <meshPhysicalMaterial
+          color="#ffffff"
+          metalness={0.1}
+          roughness={0.05}
+          transmission={0.9}
+          thickness={0.5}
+          ior={2.4}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
+        />
+      </mesh>
+      
+      {/* Lighting */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <pointLight position={[-5, 5, 5]} intensity={0.5} color="#FFD700" />
+      <pointLight position={[0, 3, 0]} intensity={0.8} color="#ffffff" />
+    </group>
+  );
+};
 
 const FloatingJewellery = () => {
   const { scrollYProgress } = useScroll();
 
   const y = useTransform(scrollYProgress, [0, 0.3, 1], ["-10%", "50%", "150%"]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
+  const rotateZ = useTransform(scrollYProgress, [0, 1], [0, 720]);
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [0.6, 1.2, 0.9, 0.6]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [1, 1, 0.5, 0]);
   const x = useTransform(scrollYProgress, [0, 0.5, 1], ["80%", "20%", "80%"]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden">
-      <motion.div
-        style={{ y, x, rotate, scale, opacity }}
-        className="absolute top-1/4 right-[10%] w-32 h-32 md:w-40 md:h-40"
+    <motion.div
+      style={{ y, x, scale, opacity, rotateZ }}
+      className="fixed top-1/4 right-[10%] w-48 h-48 md:w-64 md:h-64 pointer-events-none z-20"
+    >
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        gl={{ alpha: true, antialias: true }}
       >
-        <div className="relative w-full h-full">
-          {/* Glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/30 blur-3xl opacity-60 animate-pulse"></div>
-          
-          {/* Ring Image */}
-          <img 
-            src={floatingRing} 
-            alt="Floating luxury ring" 
-            className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl"
-          />
-          
-          {/* Sparkle highlights */}
-          <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full blur-sm animate-pulse"></div>
-          <div className="absolute top-[40%] right-[20%] w-1.5 h-1.5 bg-primary/80 rounded-full blur-sm animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        </div>
-      </motion.div>
-    </div>
+        <Ring3D />
+      </Canvas>
+    </motion.div>
   );
 };
 
