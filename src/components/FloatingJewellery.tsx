@@ -1,21 +1,18 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 
 const FloatingJewellery = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
+  const { scrollYProgress } = useScroll();
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 0.3, 1], ["0%", "50%", "150%"]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [1, 1.2, 0.9, 0.6]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [1, 1, 0.5, 0]);
+  const x = useTransform(scrollYProgress, [0, 0.5, 1], ["0%", "20%", "80%"]);
 
   return (
-    <div ref={ref} className="fixed top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden">
+    <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden">
       <motion.div
-        style={{ y, rotate, scale }}
+        style={{ y, x, rotate, scale, opacity }}
         className="absolute top-1/4 right-[10%] w-32 h-32 md:w-40 md:h-40"
       >
         <div className="relative w-full h-full">
